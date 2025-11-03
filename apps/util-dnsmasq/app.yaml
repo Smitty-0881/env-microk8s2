@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: util-dnsmasq
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Smitty-0881/helm-charts.git
+    targetRevision: main
+    path: util-dnsmasq
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: https://192.168.4.96:16443
+    namespace: utilities
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
