@@ -1,15 +1,33 @@
 apiVersion: argoproj.io/v1alpha1
-kind: AppProject
+kind: ApplicationSet
 metadata:
-  name: default
+  name: microk8s2-appset
   namespace: argocd
 spec:
-  description: Default project for microk8s2 apps
-  sourceRepos:
-    - '*'
-  destinations:
-    - namespace: '*'
-      server: '*'
-  clusterResourceWhitelist:
-    - group: '*'
-      kind: '*'
+  generators:
+    - git:
+        repoURL: https://github.com/Smitty-0881/env-microk8s2.git
+        revision: main
+        directories:
+          - path: apps/*
+  template:
+    metadata:
+      name: '{{path.basename}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/Smitty-0881/helm-charts.git
+        targetRevision: main
+        path: '{{path.basename}}'
+        helm:
+          valueFiles:
+            - values.yaml
+      destination:
+        server: https://192.168.4.96:16443
+        namespace: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
