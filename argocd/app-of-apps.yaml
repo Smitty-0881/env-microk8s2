@@ -6,7 +6,7 @@ metadata:
 spec:
   generators:
     - git:
-        repoURL: https://github.com/Smitty-0881/env-microk8s1.git
+        repoURL: https://github.com/Smitty-0881/env-microk8s2.git
         revision: main
         directories:
           - path: apps/*         # ✅ This scans each subdirectory
