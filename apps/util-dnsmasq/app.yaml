@@ -4,7 +4,7 @@ metadata:
   name: util-dnsmasq
   namespace: argocd
 spec:
-  project: default
+  project: test
   source:
     repoURL: https://github.com/Smitty-0881/helm-charts.git
     targetRevision: main
