@@ -1,22 +1,33 @@
 apiVersion: argoproj.io/v1alpha1
-kind: Application
+kind: ApplicationSet
 metadata:
-  name: microk8s2-apps
+  name: microk8s2-appset
   namespace: argocd
 spec:
-  project: default
-  source:
-    repoURL: https://github.com/Smitty-0881/env-microk8s2.git
-    targetRevision: main
-    path: apps
-    directory:
-      recurse: true
-  destination:
-    server: https://192.168.4.96:16443
-    namespace: default
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+  generators:
+    - git:
+        repoURL: https://github.com/Smitty-0881/env-microk8s1.git
+        revision: main
+        directories:
+          - path: apps/*         # ✅ This scans each subdirectory
+  template:
+    metadata:
+      name: '{{path.basename}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/Smitty-0881/helm-charts.git
+        targetRevision: main
+        path: '{{path.basename}}'   # use subdirectory name as chart path
+        helm:
+          valueFiles:
+            - values.yaml
+      destination:
+        server: https://192.168.4.96:16443
+        namespace: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
