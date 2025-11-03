@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: test
+  namespace: argocd
+spec:
+  description: Test project for microk8s2 cluster
+  sourceRepos:
+    - 'https://github.com/Smitty-0881/*'
+  destinations:
+    - namespace: '*'
+      server: https://192.168.4.96:16443         # microk8s2 cluster
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  namespaceResourceWhitelist:
+    - group: '*'
+      kind: '*'
