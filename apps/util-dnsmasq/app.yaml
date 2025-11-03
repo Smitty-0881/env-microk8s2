@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/Smitty-0881/helm-charts.git
     targetRevision: main
-    path: util-dnsmasq
+    chart: util-dnsmasq
     helm:
       valueFiles:
         - ../../apps/util-dnsmasq/values.yaml

@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/Smitty-0881/helm-charts.git
     targetRevision: main
-    path: obs-prometheus
+    chart: obs-prometheus
     helm:
       valueFiles:
         - ../../apps/obs-prometheus/values.yaml
