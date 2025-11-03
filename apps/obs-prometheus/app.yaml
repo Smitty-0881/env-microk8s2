@@ -14,10 +14,8 @@ spec:
         - ../../apps/obs-prometheus/values.yaml
   destination:
     server: https://192.168.4.96:16443
-    namespace: monitoring
+    namespace: default
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-      - CreateNamespace=true

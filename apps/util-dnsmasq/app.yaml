@@ -14,10 +14,8 @@ spec:
         - ../../apps/util-dnsmasq/values.yaml
   destination:
     server: https://192.168.4.96:16443
-    namespace: utilities
+    namespace: default
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
