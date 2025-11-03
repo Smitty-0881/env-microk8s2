@@ -1,5 +1,5 @@
 replicaCount: 2
 args:
-  - "-text=Hello from microk8s1!"
+  - "-text=Hello from microk8s2! Notice the difference?"
 service:
   nodePort: 31080
