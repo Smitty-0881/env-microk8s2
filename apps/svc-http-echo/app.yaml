@@ -11,7 +11,7 @@ spec:
     path: svc-http-echo
     helm:
       valueFiles:
-        - values.yaml
+        - ../../apps/svc-http-echo/values.yaml
   destination:
     server: https://192.168.4.96:16443
     namespace: default
@@ -19,3 +19,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
