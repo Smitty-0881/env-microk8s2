@@ -1,0 +1,5 @@
+replicaCount: 2
+args:
+  - "-text=Hello from microk8s1!"
+service:
+  nodePort: 31080

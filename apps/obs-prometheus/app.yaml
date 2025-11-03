@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: obs-prometheus
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Smitty-0881/helm-charts.git
+    targetRevision: main
+    path: obs-prometheus
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: https://192.168.4.95:16443
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
