@@ -12,7 +12,7 @@ spec:
           - path: apps/*         # ✅ This scans each subdirectory
   template:
     metadata:
-      name: '{{path.basename}}'
+      name: '{{path.basename}}-microk8s2'
     spec:
       project: default
       source:
