@@ -11,7 +11,7 @@ spec:
     path: util-dnsmasq
     helm:
       valueFiles:
-        - values.yaml
+        - ../../apps/util-dnsmasq/values.yaml
   destination:
     server: https://192.168.4.96:16443
     namespace: utilities
@@ -19,3 +19,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

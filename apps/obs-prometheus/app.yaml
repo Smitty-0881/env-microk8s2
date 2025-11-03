@@ -11,7 +11,7 @@ spec:
     path: obs-prometheus
     helm:
       valueFiles:
-        - values.yaml
+        - ../../apps/obs-prometheus/values.yaml
   destination:
     server: https://192.168.4.96:16443
     namespace: monitoring
@@ -19,3 +19,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
