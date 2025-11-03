@@ -1,19 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: microk8s2
+  name: microk8s2-apps
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/Smitty-0881/env-microk8s2.git
     targetRevision: main
-    path: argocd
+    path: apps
     directory:
       recurse: true
   destination:
-    server: https://kubernetes.default.svc
-    namespace: argocd
+    server: https://192.168.4.96:16443
+    namespace: default
   syncPolicy:
     automated:
       prune: true
