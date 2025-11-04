@@ -8,10 +8,14 @@ spec:
   source:
     repoURL: https://github.com/Smitty-0881/helm-charts.git
     targetRevision: main
-    chart: svc-http-echo
+    path: svc-http-echo
     helm:
       valueFiles:
-        - values.yaml
+        - $values/env-microk8s2/apps/svc-http-echo/values.yaml  # 👈 Pull this from env repo
+      valuesFrom:
+        - repoURL: https://github.com/Smitty-0881/env-microk8s2.git  # 👈 Secondary repo for overrides
+          targetRevision: main
+          ref: values
   destination:
     server: https://192.168.4.96:16443
     namespace: default
@@ -20,4 +24,4 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-     - CreateNamespace=true
+      - CreateNamespace=true
