@@ -9,16 +9,17 @@ spec:
         repoURL: https://github.com/Smitty-0881/env-microk8s2.git
         revision: main
         directories:
-          - path: apps/*         # ✅ This scans each subdirectory
+          - path: apps/*
+          - path: argocd/projects/*
   template:
     metadata:
       name: '{{path.basename}}-microk8s2'
     spec:
-      project: default
+      project: test
       source:
         repoURL: https://github.com/Smitty-0881/helm-charts.git
         targetRevision: main
-        path: '{{path.basename}}'   # use subdirectory name as chart path
+        path: '{{path.basename}}'
         helm:
           valueFiles:
             - values.yaml
