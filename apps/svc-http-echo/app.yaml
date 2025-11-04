@@ -5,17 +5,17 @@ metadata:
   namespace: argocd
 spec:
   project: test
-  source:
-    repoURL: https://github.com/Smitty-0881/helm-charts.git
-    targetRevision: main
-    path: svc-http-echo
-    helm:
-      valueFiles:
-        - $values/env-microk8s2/apps/svc-http-echo/values.yaml  # 👈 Pull this from env repo
-      valuesFrom:
-        - repoURL: https://github.com/Smitty-0881/env-microk8s2.git  # 👈 Secondary repo for overrides
-          targetRevision: main
-          ref: values
+  sources:
+    - repoURL: https://github.com/Smitty-0881/helm-charts.git
+      targetRevision: main
+      path: svc-http-echo
+      helm:
+        valueFiles:
+          - values.yaml
+    - repoURL: https://github.com/Smitty-0881/env-microk8s2.git
+      targetRevision: main
+      ref: env
+      path: apps/svc-http-echo        # where your custom values.yaml lives
   destination:
     server: https://192.168.4.96:16443
     namespace: default
