@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: svc-http-echo
+  name: svc-http-echo-microk8s2
   namespace: argocd
 spec:
   project: test
